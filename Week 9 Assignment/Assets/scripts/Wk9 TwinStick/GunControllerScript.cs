@@ -4,13 +4,27 @@ using UnityEngine;
 
 public class GunControllerScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	public Transform gunPos;
+	public GunScript startGun;
+	GunScript currentGun;
+
+	void Start(){
+		if (startGun != null){
+			SwitchGun(startGun);
+		}
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+
+	public void SwitchGun(GunScript gun){
+		if (currentGun != null){
+			Destroy(gun.gameObject);
+		}
+		currentGun = Instantiate (gun, gunPos.position, gunPos.rotation);
+		currentGun.transform.parent = gunPos;
+	}
+
+	public void Shoot(){
+		if(currentGun != null){
+			currentGun.Shoot();
+		}
 	}
 }

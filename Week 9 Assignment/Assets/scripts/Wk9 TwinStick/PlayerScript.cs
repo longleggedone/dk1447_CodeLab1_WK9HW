@@ -3,16 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent (typeof (PlayerControllerScript))]
+[RequireComponent (typeof (GunControllerScript))]
 public class PlayerScript : MonoBehaviour {
 
 	public float movementSpeed = 10;
 
 	Camera camera;
 	PlayerControllerScript controller;
+	GunControllerScript gunController;
 
 	// Use this for initialization
 	void Start () {
 		controller = GetComponent<PlayerControllerScript>();
+		gunController = GetComponent<GunControllerScript>();
 		camera = Camera.main;
 	}
 	
@@ -32,5 +35,8 @@ public class PlayerScript : MonoBehaviour {
 			controller.LookAt(point);
 		}
 
+		if(Input.GetMouseButton(0)){
+			gunController.Shoot();
+		}
 	}
 }

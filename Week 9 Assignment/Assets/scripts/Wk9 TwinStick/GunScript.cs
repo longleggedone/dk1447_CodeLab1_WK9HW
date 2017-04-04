@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class GunScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+	public Transform projStartPoint;
+	public ProjectileScript projectile;
+	public float fireInterval = 100f;
+	public float projStartVelocity = 35f;
+
+	float shotTimer;
+
+	public void Shoot(){ 
+
+		if (Time.time > shotTimer){
+			shotTimer = Time.time + fireInterval / 1000;
+			ProjectileScript newProjectile = Instantiate(projectile, projStartPoint.position, projStartPoint.rotation) as ProjectileScript;
+			newProjectile.SetSpeed (projStartVelocity);
+		}
 	}
 }
