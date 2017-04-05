@@ -9,9 +9,9 @@ public class GunScript : MonoBehaviour {
 	public float fireInterval = 100f;
 	public float projStartVelocity = 35f;
 
-	float shotTimer;
+	protected float shotTimer;
 
-	public void Shoot(){ 
+	public virtual void Shoot(){ 
 
 		if (Time.time > shotTimer){
 			shotTimer = Time.time + fireInterval / 1000;
